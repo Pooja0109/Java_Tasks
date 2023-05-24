@@ -37,11 +37,11 @@ public class Salary {
 	
 	public void calSalary()
 	{
-		hra=(basic*20)/100;
-		da=(basic*50)/100;
+		hra=(basic*10)/100;
+		da=(basic*12)/100;
 		pf=(basic*11)/100;
 		gross=basic+hra+da-pf;
-		net=gross-pf;
+		net=basic-pf;
 	}
 
 	@Override
