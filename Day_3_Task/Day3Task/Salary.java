@@ -1,6 +1,6 @@
 package com.Day3Task;
 
-public class Salary implements SalaryDisplay{
+public class Salary implements SalaryDisplayInterface{
 
 	private double basic;
 	private double da;
