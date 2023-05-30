@@ -36,13 +36,15 @@ public class EmployeeController implements EmployeeInterface{
 	{
 		System.out.println("\n---Entered Employee Details--");
 		
+		/*
 		Iterator<Employee> i = emplist.iterator();
 		while (i.hasNext()) {
 			System.out.println(i.next());
 		}
+		*/
 
 		//Implementing Consumer functional interface
-		//emplist.forEach(e -> System.out.println(e));
+		emplist.forEach(e -> System.out.println(e));
 		
 //------------------------------------------------------------------------------------
 //		System.out.println(emplist);   //For multiple employees
