@@ -3,6 +3,7 @@ package com.dedalus.view;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.function.BiPredicate;
 
 import com.dedalus.controller.EmployeeController;
 import com.dedalus.controller.EmployeeInterface;
@@ -15,10 +16,15 @@ class MenuOptions {
 	String pwd = null;
 
 	public boolean login() {
+		
+		//Implementing Predicate functional interface
+		
+		BiPredicate<String, String> res = (un, pwd) ->{if(un.equals("Pihu") && pwd.equals("pass")) return true; else return false; };
 		try {
 			InputStreamReader isr = new InputStreamReader(System.in);
 			BufferedReader br = new BufferedReader(isr);
 			System.out.println("\t\t...Welcome to Employee Management System...\n");
+			
 			System.out.println("Enter Username");
 			un = br.readLine();
 			System.out.println("Enter Password");
@@ -26,7 +32,7 @@ class MenuOptions {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (un.equals("Pihu") && pwd.equals("pass"))
+		if (res.test(un,pwd))
 			return true;
 		else
 			return false;
@@ -42,7 +48,7 @@ class MenuOptions {
 				Scanner sc = new Scanner(System.in);
 				String ch = null;
 				do {
-					System.out.println("\n1.Add Employee\n2.View Employee\n3.Serialize Emp File\n4.DeSerialize Emp File");
+					System.out.println("\n1.Add Employee\n2.View Employee\n3.Serialize Emp File\n4.DeSerialize Emp File\n5.Exit");
 					System.out.println("Enter your choice :");
 					int choice = sc.nextInt();
 
@@ -62,7 +68,12 @@ class MenuOptions {
 					case 4:
 						ec.deSerialEmployee();
 						break;
-
+						
+					case 5:
+						System.out.println("---Program Terminated---");
+						System.exit(0);
+					break;
+					
 					default:
 						System.out.println("Invalid choice...try again!");
 						break;
@@ -90,9 +101,8 @@ class LoaderCls implements Runnable {
 	public void run() {
 		MenuOptions mo = new MenuOptions();
 		try {
-			
 			boolean result=mo.login();
-			System.out.println("\nLoading... Please wait!...[5 seconds ]\n");
+			System.out.println("\nLoading... Please wait![5 seconds]\n");
 			Thread.sleep(5000);
 			mo.menuFun(result);
 		} catch (InterruptedException e) {
